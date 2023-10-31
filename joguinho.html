@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jogo a velha</title>
+    <style>
+        
+        table 
+        {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        
+        td 
+        {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            font-size: 40px; 
+        }
+    
+    
+    </style>
+</head>
+<body>
+    <table>
+        <script language="javascript">
+            var a, d, c, f;
+            a = new Array(3);
+
+            for (var b = 0; b < 3; b++) 
+            {
+                a[b] = new Array(3);
+            }
+
+            d = "X";
+            c = false;
+            f = document.createElement("p");
+
+            for (var b = 0; b < 3; b++) 
+            {
+                for (var l = 0; l < 3; l++) 
+                {
+                    a[b][l] = "";
+                }
+            }
+
+            function g(b, l) 
+            {
+                if (a[b][l] === "" && !c) 
+                {
+                    a[b][l] = d;
+                    var cell = document.getElementById("cell_" + b + "_" + l);
+                    cell.textContent = d; 
+
+                    if (h(d)) 
+                    {
+                        f.textContent = "Jogador " + d + " venceu!";
+                        c = true;
+                    } 
+                    
+                    else 
+                    {
+                        d = (d === "X") ? "O" : "X";
+                    }
+                }
+            }
+
+            function h(d) 
+            {
+                for (var b = 0; b < 3; b++) 
+                {
+                    if (a[b][0] === d && a[b][1] === d && a[b][2] === d) 
+                    {
+                        f.textContent = "Jogador " + d + " venceu!";
+                        c = true;
+                    }
+                }
+
+                for (var l = 0; l < 3; l++) 
+                {
+                    if (a[0][l] === d && a[1][l] === d && a[2][l] === d) 
+                    {
+                        f.textContent = "Jogador " + d + " venceu!";
+                        c = true;
+                    }
+                }
+
+                if (a[0][0] === d && a[1][1] === d && a[2][2] === d) 
+                {
+                    f.textContent = "Jogador " + d + " venceu!";
+                    c = true;
+                }
+
+                if (a[0][2] === d && a[1][1] === d && a[2][0] === d) 
+                {
+                    f.textContent = "Jogador " + d + " venceu!";
+                    c = true;
+                }
+            }
+
+            document.write("<table border='1'>");
+            for (var l = 0; l < 3; l++) 
+            {
+                document.write("<tr>");
+                
+                    for (var b = 0; b < 3; b++) 
+                {
+                    document.write("<td id='cell_" + l + "_" + b + "' onclick='g(" + l + "," + b + ")'></td>");
+                }
+                
+                document.write("</tr>");
+            }
+           
+            document.write("</table");
+
+            document.body.appendChild(f);
+        </script>
+    </table>
+</body>
+</html>
